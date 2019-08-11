@@ -31,9 +31,27 @@ String getName() {
 	void setSpeed() {
 		this.speed = speed;
 	}   
+	
+	void setRaceLocation() {
+		this.raceLocation = raceLocation;
+	
+	}
+	void raceStartTime() {
+		this.raceStartTime = raceStartTime;
+	}
+	void getBibNumber() {
+		this.bibNumber = bibNumber;
+		
+	}
 public static void main(String[] args) {
 	Athlete john = new Athlete("john",30);
 	Athlete bob  = new Athlete("bob", 999999999);
+	System.out.println(john.name);
+	System.out.println(john.bibNumber);
+	System.out.println(john.raceLocation);
+	System.out.println(bob.name);
+	System.out.println(bob.bibNumber);
+	System.out.println(bob.raceLocation);
 }
 }
 

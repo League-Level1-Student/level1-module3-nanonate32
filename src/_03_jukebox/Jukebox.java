@@ -12,7 +12,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -26,7 +29,7 @@ public class Jukebox implements Runnable {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-
+                 Song song = new Song("coolSong.wav");
 		// 3. Play the Song
 
 		/*
@@ -35,9 +38,21 @@ public class Jukebox implements Runnable {
 		 * each song, or a picture of the album cover. When the button or album
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
+		 * 
+		 * 
 		 */
+                 JFrame frame  = new JFrame();
+                 JPanel panel = new JPanel();
+                 JButton button = new JButton();
+                 JButton button2 = new JButton();
+                 frame.setVisible(true);
+                  frame.add(panel);
+                  panel.add(button);
+                  panel.add(button2);
+                  button.setText("Cool Song");
+                  button2.setText("Awesome Song");
+                  frame.pack();
     }
-    
     
 	/* Use this method to add album covers to your Panel. */
 	private JLabel loadImage(String fileName) {

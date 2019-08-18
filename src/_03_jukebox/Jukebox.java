@@ -5,6 +5,8 @@ package _03_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -18,20 +20,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
-
+public class Jukebox implements Runnable, ActionListener {
+JButton button;
+JButton button2;
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
                  Song song = new Song("coolSong.wav");
+                 song.play();
 		// 3. Play the Song
-
+                         
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
@@ -42,15 +47,19 @@ public class Jukebox implements Runnable {
 		 * 
 		 */
                  JFrame frame  = new JFrame();
+                        
                  JPanel panel = new JPanel();
-                 JButton button = new JButton();
-                 JButton button2 = new JButton();
+                 button = new JButton();
+                 button2 = new JButton();
                  frame.setVisible(true);
                   frame.add(panel);
+                  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                   panel.add(button);
                   panel.add(button2);
                   button.setText("Cool Song");
                   button2.setText("Awesome Song");
+                  button.addActionListener(this);
+                  button2.addActionListener(this);
                   frame.pack();
     }
     
@@ -59,6 +68,18 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(button.equals(e.getSource())){
+		  Song song = new Song("/Users/league/git/level1-module3-nanonate32/src/_03_jukebox/coolSong.wav");
+		  song.play();
+		  System.out.println("hi");
+			
+		}
+		
 	}
 
 }
@@ -103,18 +124,18 @@ class Song {
 	}
 
 	private void startSong() {
-		Thread t = new Thread() {
-			public void run() {
-				try {
-					if (duration > 0)
-						mp3Player.play(duration);
-					else
-						mp3Player.play();
-				} catch (Exception e) {
-				}
-			}
-		};
-		t.start();
+//		Thread t = new Thread() {
+//			public void run() {
+//				try {
+//					if (duration > 0)
+//						mp3Player.play(duration);
+//					else
+//						mp3Player.play();
+//				} catch (Exception e) {
+//				}
+//			}
+//		};
+//		t.start();
 	}
 
 	private void loadPlayer() {

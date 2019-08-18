@@ -79,7 +79,7 @@ public class MediaPalace {
 
 	/* If you want to use an mp3, you must first convert it to a .wav file on http://media.io */
 	public AudioClip loadSound(String fileName) {
-		return JApplet.newAudioClip(getClass().getResource(fileName));
+		return JApplet.newAudioClip(getClass().getResource("donkeyKong.wav"));
 	}
 
 	public void playSoundFromInternet(String soundURL) {

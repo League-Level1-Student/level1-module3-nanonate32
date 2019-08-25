@@ -77,8 +77,14 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		MediaPalace palace = new MediaPalace();
 		palace.playMusicOnComputer("src/_04_magic_box/donkeyKong.wav");
 		System.out.println(e.getX() + " " + e.getY());
-		IF()
-	}
+		palace.loadImageFromHardDrive("jony");
+		try {
+			loadBackgroundImage();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}   
 
 	@Override
 	public void mousePressed(MouseEvent e) {

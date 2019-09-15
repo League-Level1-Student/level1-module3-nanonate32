@@ -1,9 +1,13 @@
 int x = 300;
   int y = 1;
-   int birdYVelocity = 5;
+   int birdYVelocity = 0;
    int gravity = 1;
+   int pipeX = 300;
+   
+   int UpperPipeHeight = 50;
+   int LowerPipeHeight = 1000;
    void mousePressed(){
-    y=y - 100;
+    birdYVelocity = -15;
    }
 void setup(){
   size(600,600);
@@ -14,8 +18,26 @@ void draw(){
   stroke(#A76140);
   ellipse(x,y,50,50);
   fill(#2F35A0);
-  rect(111,167,155,100);
-  
+  rect(pipeX,0,100,UpperPipeHeight);
+  fill(#E84B94);
+  rect(pipeX,UpperPipeHeight + 200,100,LowerPipeHeight);
+  birdYVelocity += gravity;
   y=y+birdYVelocity;
-
+  pipeX = pipeX - 5;
+  teleportPipes();
+  intersectsPipes();
+}
+void teleportPipes(){
+  if(pipeX<=0){
+    pipeX = 600;
+     UpperPipeHeight = (int) random(100, 400);
+    
+  }
+}
+boolean intersectsPipes() { 
+     if (y < UpperPipeHeight && x > pipeX && x < (pipeX+100)){
+          return true; }
+     else if (y>LowerPipeHeight && x > pipeX && x < (pipeX+100)) {
+          return true; }
+     else { return false; }
 }

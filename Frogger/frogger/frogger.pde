@@ -2,10 +2,12 @@ int frogX;
 int frogY;
 int frogRadius = 25;
 Car car;
-Car bob;
+Car tom;
+Car jerry;
 void setup() {
-  bob = new Car(100,100,100,10);
-  car = new Car(10, 10, 10, 10);
+  tom = new Car(100, 100, 100, -10);
+  car = new Car(100, 10, 10, 10);
+  jerry = new Car(200, 40, 50, 60);
   size(800, 600);
   frogX = width/2;
   frogY =height/2;
@@ -13,9 +15,12 @@ void setup() {
 void draw() {
   background(#8CA9B4);
   fill(#1CAF49);
+
   ellipse(frogX, frogY, frogRadius*2, frogRadius*2);
   car.display();
-  bob.display();
+  tom.display();
+  jerry.display();
+ 
 }
 void keyPressed() {
 
@@ -63,19 +68,46 @@ class Car {
     this.size=size;
     this.speed=speed;
   }
-  
+  int getX() {
+    return x;
+  }
+  int getY() {
+    return y;
+  }
+  int getSize() {
+    return size;
+  }
+  int getSpeed() {
+    return speed;
+  }
   void display()
   {
     fill(0, 255, 0);
     rect(x, y, size, size);
     move();
   }
-  
-    
- void move(){
-   x+=speed;
-   if(x>750){
-     x=100;
-   }
- }
+
+
+  void move() {
+    x+=speed;
+    if (x<50) {
+      x=700;
+    }
+    if (x>750) {
+      x = 100;
+    }
+     if(intersects()){
+    frogX = width/2;
+    frogY = height/2;
+  }
+  }
+  boolean intersects() {
+  if ((frogY > y && frogY < y+50) && (frogX > x && frogX < x+size))
+  {
+    return true;
+  } else
+  {
+    return false;
+  }
+}
 }

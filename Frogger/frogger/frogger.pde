@@ -7,7 +7,7 @@ Car jerry;
 void setup() {
   tom = new Car(100, 100, 100, -10);
   car = new Car(100, 10, 10, 10);
-  jerry = new Car(200, 40, 50, 60);
+  jerry = new Car(200, 40, 50, 10);
   size(800, 600);
   frogX = width/2;
   frogY =height/2;
@@ -20,7 +20,6 @@ void draw() {
   car.display();
   tom.display();
   jerry.display();
- 
 }
 void keyPressed() {
 
@@ -96,18 +95,18 @@ class Car {
     if (x>750) {
       x = 100;
     }
-     if(intersects()){
-    frogX = width/2;
-    frogY = height/2;
-  }
+    if (intersects()) {
+      frogX = width/2;
+      frogY = height/2;
+    }
   }
   boolean intersects() {
-  if ((frogY > y && frogY < y+50) && (frogX > x && frogX < x+size))
-  {
-    return true;
-  } else
-  {
-    return false;
+    if ((frogY > y && frogY < y+size) && (frogX > x && frogX < x+size))
+    {
+      return true;
+    } else
+    {
+      return false;
+    }
   }
-}
 }
